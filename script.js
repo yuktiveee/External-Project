@@ -1,19 +1,32 @@
+let uploadCount = 0; // Counter to track uploads
+
 function detectImage() {
     const imageInput = document.getElementById('imageInput');
     const resultBox = document.getElementById('result');
-  
+
     if (!imageInput.files || !imageInput.files[0]) {
-      resultBox.textContent = 'Please upload an image!';
-      return;
+        resultBox.textContent = 'Please upload an image!';
+        return;
     }
-  
-    // Mock AI Detection
+
+    // Increment the upload count
+    uploadCount++;
+
+    // Display processing message
     resultBox.textContent = 'Processing...';
-  
+
+    // Simulate AI Detection with a delay
     setTimeout(() => {
-      resultBox.textContent = 'AI Result: Image is DEEPFAKE.';
+        if (uploadCount % 2 === 1) {
+            // Odd upload - DEEPFAKE
+            resultBox.textContent = 'AI Result: Image is DEEPFAKE.';
+        } else {
+            // Even upload - REAL
+            resultBox.textContent = 'AI Result: Image is REAL.';
+        }
     }, 2000);
-  }
+}
+
   
   // GSAP Animation on Load
   document.addEventListener('DOMContentLoaded', () => {
